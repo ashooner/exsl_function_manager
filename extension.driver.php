@@ -2,10 +2,10 @@
 	require_once('lib/class.functionmanager.php');	
 	require_once('lib/class.functionstream.php');	
 
-	Class extension_function_manager extends Extension{
+	Class extension_EXSL_Function_Manager extends Extension{
 
 		public function about(){
-			return array('name' => 'Function Manager',
+			return array('name' => 'EXSL Function Manager',
 						 'version' => '0.1',
 						 'release-date' => '',
 						 'author' => array('name' => 'Andrew Shooner',

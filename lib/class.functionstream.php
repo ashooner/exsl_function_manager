@@ -24,9 +24,13 @@ class XslTemplateLoaderStream{
     }
     function stream_read($count)
     {
-        $ret = substr($this->template, $this->position, $count); 
-        $this->position += $count;   
-        return $ret;
+       $ret = substr($this->template, $this->position, $count); 
+       $this->position += $count;   
+       return $ret;
+
+		//         $ret = substr("<output >test</output>", $this->position, $count); 
+		//         $this->position += $count;
+		// return $ret;
     }
     function stream_write($data)
     {

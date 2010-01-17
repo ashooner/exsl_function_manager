@@ -13,6 +13,7 @@ Symphony 2.0.7 added the capability to register PHP functions for use within XSL
 
 Fortunately EXSL allows for the creation of functions in a client coder-defined namespace. This allows for the use of for version control. The EXSL Function Manager allows function authors to define a namespace, and wraps the php function call in an EXSL function that uses that namespace.
 
+test.
 
 ## Usage
 

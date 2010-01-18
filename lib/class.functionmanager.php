@@ -1,78 +1,75 @@
 <?php
-
+	require_once('class.exslfunction.php');	
+	require_once('FirePHPCore/fb.php');
+	
  class FunctionManager {
 	private $functions = array();
 	private $page;
 	
-	//constructor
+
 	function __construct($context) {
 		$this->page = $context['page'];
+
+	}
+	
+	public function createDelegate() {
+		// Create Delegate
+
+		$this->page->ExtensionManager->notifyMembers(
+			'ManageEXSLFunctions', '/frontend/', 	array('manager' => &$this)
+			);
+	fb("Delegate Created");
 	}
 	
 	
-	//setters
+	public function createStream() {
+		// Register Stream Wrapper
+		stream_wrapper_register("xslstream", "XslTemplateLoaderStream");
+		$exsl = $this->getFunctions();
+		fb($exsl, "Stream EXSL");
+		$opts = array(
+		   'xslstream' => array(
+		       'namespaces' => $exsl['declarations'],
+				'functions' => $exsl['functions']
+				//'functions' => print_r($exsl)
+		   )
+		);
+		$streamContext = stream_context_create($opts);
+		libxml_set_streams_context($streamContext);
+		fb("Stream Created.");
+	}
+		
+
+	// For use in subscribed delegates
 	public function addFunction($strName, $strURI, $strHandle = NULL){
-		//register function with PHP
+				fb("addFunction called.");
+		//Register function with PHP
 		$this->page->registerPHPFunction($strName);
 		
-		//add function to object's data member array
-		$newFunction['name'] = $strName;
-		$newFunction['uri'] = $strURI; 
+		//Create a new EXSL function object
+		$function = new EXSLFunction($strName, $strURI, $strHandle);
 		
-		if($strHandle != NULL) {
-			$newFunction['handle'] = $strHandle;
-		} else {
-			 			$newFunction['handle'] = $strName;
-			 		}
-		
-		$this->functions[] = $newFunction;
+		//Add to Manager's function array, which groups by namespace URI
+		$this->functions[$strURI][] = $function;
 	}
 
-	//getters
-	public function getNamespaces(){
-			$strNamespaces = '';
-			$i = 0;
-			foreach ($this->functions as $function) {
-				//TODO: pull from array index, not counter var
-				$strNamespaces .= ' xmlns:function' . $i . '="' . $function['uri'] . '"
-				'; 
-			$i += 1;
+	
+	private function getFunctions(){
+				fb("getFunctions called.");
+		$strFunctions = "";
+		$strDeclarations = "";
+		$i = 0;
+		foreach ($this->functions as $namespace){
+			$prefix = 'fn' . $i;
+			foreach ($namespace as $function){
+				$strDeclarations .= $function->getDeclarations($prefix);
+				$strFunctions .= $function->getFunction($prefix);
 			}
-			return $strNamespaces;
+		$i++;
 		}
+		return array ('declarations' => $strDeclarations, 'functions' => $strFunctions);
 		
-		public function getXSL(){
-			$strXSL = '';
-			$i = 0;	
-			foreach($this->functions as $function) {
-				//create the block of namespaces for the new functions (using generic prefixes)
-				//convert arguments passed to the exslt function into arguments for the php function
-				$reflector = new ReflectionMethod($function['name']);
-				$params = $reflector->getParameters();
-				if ($function['handle']) {$xsl_name = $function['handle'];} else { $xsl_name = $function['name'];}
+	}
+		
 
-				$strParams = '';
-				$last_param = end($params); 
-				$strPassParams = '';
-					foreach( $params as $param) {
-						$strParams .= '<xsl:param name="' . $param->getName() . '" />';
-							if ($param->isArray()) {
-								// function wants a domelement(which comes wrapped in an array)
-								$strPassParams .= 'exsl:node-set($' . $param->getName() . ")";
-							} else {
-								$strPassParams .= '$' . $param->getName();
-							}
-						if ($param != $last_param) {$strPassParams .= ',';}
-					}
-				$strFunc = '<func:function name="function' . $i . ':' . $xsl_name . '" xmlns:func="http://exslt.org/functions" >' 
-				. $strParams .
-					'<func:result>
-						<xsl:copy-of select="php:function(\'' . $function['name'] . '\',' . $strPassParams . ')" />
-					</func:result>
-				</func:function>';
-					$i += 1;
-				$strXSL .= $strFunc;
-			}
-			return $strXSL;
-		}	
 }

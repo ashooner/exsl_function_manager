@@ -1,9 +1,9 @@
 <?php
 	require_once('lib/class.functionmanager.php');	
 	require_once('lib/class.functionstream.php');	
+	require_once('lib/FirePHPCore/fb.php');
 
 	Class extension_EXSL_Function_Manager extends Extension{
-
 		public function about(){
 			return array('name' => 'EXSL Function Manager',
 						 'version' => '0.1',
@@ -22,34 +22,13 @@
 							'callback' => 'initFunctionManager'
 						),
 
-					);
+					);			
 		}
 		
 		public function initFunctionManager($context) {
-			//Instatiate the manager
-			
-				$Manager = new FunctionManager(&$context);
-			
-			// Create Delegate
-				$context['page']->ExtensionManager->notifyMembers(
-				'ManagePhpFunctions', '/frontend/', 
-					array(
-						'manager' => &$Manager
-					)
-			 	);
-		
-			// Register Stream Wrapper
-			stream_wrapper_register("xslstream", "XslTemplateLoaderStream");
-			
-			//Create context for stream using data members from function manager
-			$opts = array(
-			   'xslstream' => array(
-			       'namespaces' => $Manager->getNamespaces(),
-					'functions' => $Manager->getXSL()
-			   )
-			);
-			$streamContext = stream_context_create($opts);
-			libxml_set_streams_context($streamContext);
-							
+				
+			$Manager = new FunctionManager(&$context);
+			$Manager->createDelegate();	
+			$Manager->createStream();				
 		}		
 	}

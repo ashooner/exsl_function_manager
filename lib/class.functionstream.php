@@ -13,7 +13,7 @@ class XslTemplateLoaderStream{
 	        <xsl:stylesheet version="1.0" 
 	                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 					 xmlns:func="http://exslt.org/functions"
-				     xmlns:exsl="http://exslt.org/common"
+				     xmlns:exsl="http://exslt.org/common"  
 					 xmlns:php="http://php.net/xsl"'
 					. $context_array['xslstream']['namespaces']  .'
 					extension-element-prefixes="func php" >'

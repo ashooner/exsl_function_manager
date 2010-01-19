@@ -22,7 +22,7 @@ xmlns:function="http://example.com" >
 	<xsl:variable name='testnode'>
 		<node>Hello, I'm a node. I've been to PHP and back. Wild stuff.</node>
 	</xsl:variable>
-	<xsl:copy-of select='function:hellonode($testnode)' /> 
+	<xsl:copy-of select='function:hellonode($testnode)'  /> 
 
 </xsl:template>
 </xsl:stylesheet>

@@ -29,12 +29,12 @@ where
 Be sure to define all function names (or alternatively handles if set) as well as the namespace used for them in your extension documentation.
 
 #### Accepting DOMElements with Type Hinting
-If your extension needs to parse XML sent from the XSL transformation, EFM will automatically convert an XSL variable to a node-set. To trigger this, just type hint your php function variable as an array. The node-set will arrive in your php function as a DomElement object wrapped in an array.
+If your extension needs to parse XML sent from the XSL transformation, EFM will automatically convert an XSL variable to a node-set. To trigger this, just type hint your php function variable as an array. The node-set will arrive in your php function as a DomDocument object wrapped in an array. To return an XML node, be sure to return a DOmElement rather than a full DOmDocument.
 
 ### In a Symphony Page
 With EXSL Function Manager activated, include the registered functions using the efm stream just as you would an xsl document, in the top level of your XSL:
 
-`<xsl:include href='efm://functions />`
+`<xsl:include href='efm://functions' />`
 
 XSL authors will need to declare the namespace of every function managed by EFM that they want to call in their XSL document. The prefix they choose is up to them.
 
@@ -49,7 +49,7 @@ Simply put, there are probably a lot more ways to abuse this than anything else.
 3. **Do** use this to generate views, or initiate behavior using those views, that would otherwise be awkward or impossible within Symphony.
 4. **Do** use it for utility functions missing from XSLT 1, providing they are not native PHP functions. If they are native php functions, then use the php: namespace for the function.
 
-The bottom line is that Symphony provides a pretty good MVC structure, and introducing php functions into the XSL transformation stands a good chance of mucking that up. So hey, lets be careful out there.
+The bottom line is that Symphony provides a pretty good MVC structure, and introducing php functions into the XSL transformation stands a good chance of mucking that up. So hey, let's be careful out there.
 
 
 

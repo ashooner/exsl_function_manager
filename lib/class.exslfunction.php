@@ -31,7 +31,7 @@ class EXSLFunction{
 			foreach( $params as $param) {
 				$strParams .= '<xsl:param name="' . $param->getName() . '" />';
 					if ($param->isArray()) {
-						// function wants a domelement(which comes wrapped in an array)
+						// function wants a DomDocument (which comes wrapped in an array)
 						$strPassParams .= 'exsl:node-set($' . $param->getName() . ")";
 					} else {
 						$strPassParams .= '$' . $param->getName();

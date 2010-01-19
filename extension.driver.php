@@ -1,7 +1,6 @@
 <?php
 	require_once('lib/class.functionmanager.php');	
 	require_once('lib/class.functionstream.php');	
-	require_once('lib/FirePHPCore/fb.php');
 
 	Class extension_EXSL_Function_Manager extends Extension{
 		public function about(){

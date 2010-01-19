@@ -1,6 +1,5 @@
 <?php
 	require_once('class.exslfunction.php');	
-	require_once('FirePHPCore/fb.php');
 	
  class FunctionManager {
 	private $functions = array();
@@ -18,7 +17,6 @@
 		$this->page->ExtensionManager->notifyMembers(
 			'ManageEXSLFunctions', '/frontend/', 	array('manager' => &$this)
 			);
-	fb("Delegate Created");
 	}
 	
 	
@@ -42,7 +40,6 @@
 
 	// For use in subscribed delegates
 	public function addFunction($strName, $strURI, $strHandle = NULL){
-				fb("addFunction called.");
 		//Register function with PHP
 		$this->page->registerPHPFunction($strName);
 		
@@ -55,7 +52,6 @@
 
 	
 	private function getFunctions(){
-				fb($this->functions, "getFunctions called.");
 		$strFunctions = "";
 		$strDeclarations = "";
 		$i = 0;

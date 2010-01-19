@@ -1,5 +1,5 @@
 <?php 
-	require_once('FirePHPCore/fb.php');
+
 class EXSLFunction{
 	private $fn_name;
 	private $fn_handle;
@@ -18,7 +18,6 @@ class EXSLFunction{
 	public function getDeclarations($prefix) {
 		$strDeclaration = "xmlns:" . $prefix . "='" . $this->fn_namespace ."'";
 		$this->fn_declaration = $strDeclaration;
-		fb("Declaration", $strDeclaration);
 		return $this->fn_declaration;
 	}
 	

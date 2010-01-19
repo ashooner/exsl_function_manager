@@ -24,11 +24,11 @@
 	
 	public function createStream() {
 		// Register Stream Wrapper
-		stream_wrapper_register("xslstream", "XslTemplateLoaderStream");
+		stream_wrapper_register("efm", "XslTemplateLoaderStream");
 		$exsl = $this->getFunctions();
 		fb($exsl, "Stream EXSL");
 		$opts = array(
-		   'xslstream' => array(
+		   'efm' => array(
 		       'namespaces' => $exsl['declarations'],
 				'functions' => $exsl['functions']
 				//'functions' => print_r($exsl)
@@ -55,14 +55,14 @@
 
 	
 	private function getFunctions(){
-				fb("getFunctions called.");
+				fb($this->functions, "getFunctions called.");
 		$strFunctions = "";
 		$strDeclarations = "";
 		$i = 0;
 		foreach ($this->functions as $namespace){
 			$prefix = 'fn' . $i;
+			$strDeclarations .= $namespace[0]->getDeclarations($prefix); //Get the declaration from the first EXSL object in the array
 			foreach ($namespace as $function){
-				$strDeclarations .= $function->getDeclarations($prefix);
 				$strFunctions .= $function->getFunction($prefix);
 			}
 		$i++;

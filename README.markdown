@@ -54,4 +54,3 @@ The bottom line is that Symphony provides a pretty good MVC structure, and intro
 
 
 
-

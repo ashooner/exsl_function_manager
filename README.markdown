@@ -4,7 +4,6 @@
 This is currently alpha. This should function, but I'm not finished with documentation or testing.
 
 ##Synopsis
-
 This extension provides a delegate that allows other extensions to register php functions with Symphony's XSLTProcessor object. It also provides a stream to an XSL document that declares these functions using EXSL:function.
 
 ##Background

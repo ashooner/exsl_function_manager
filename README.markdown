@@ -22,9 +22,10 @@ To register a PHP function for use as an exsl function can do so using the EFM's
 
 `addFunction($name, $uri-namespace, $handle[optional])`
 where
-`$nam`e = the php function name as it would be called (or added to the normal registerfunction method).
-`$uri-namespace` = The URI used to uniquely identify the function or group of functions you are registering
-`$handle` = An optional name to be used as the exsl function name  if you want the function called in the XSL to be different from the php function name.
+
+* `$name` = the php function name as it would be called (or added to the normal registerfunction method).
+* `$uri-namespace` = The URI used to uniquely identify the function or group of functions you are registering
+* `$handle` = An optional name to be used as the exsl function name  if you want the function called in the XSL to be different from the php function name.
 
 Be sure to define all function names (or alternatively handles if set) as well as the namespace used for them in your extension documentation.
 

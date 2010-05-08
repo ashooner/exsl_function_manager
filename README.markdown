@@ -1,7 +1,8 @@
 #EXSL Function Manager
+Version 0.5
 
 ##Status
-This is currently alpha. This should function, but I'm not finished with documentation or testing.
+This is currently beta.
 
 ##Synopsis
 This extension provides a delegate that allows other extensions to register php functions with Symphony's XSLTProcessor object. It also provides a stream to an XSL document that declares these functions using EXSL:function.
@@ -49,7 +50,7 @@ Simply put, there are probably a lot more ways to abuse this than anything else.
 3. **Do** use this to generate views, or initiate behavior using those views, that would otherwise be awkward or impossible within Symphony.
 4. **Do** use it for utility functions missing from XSLT 1, providing they are not native PHP functions. If they are native php functions, then use the php: namespace for the function.
 
-The bottom line is that Symphony provides a pretty good MVC structure, and introducing php functions into the XSL transformation stands a good chance of mucking that up. So hey, let's be careful out there.
+The bottom line is that Symphony provides a pretty good MVC structure, and introducing php functions into the XSL transformation stands a good chance of mucking that up. 
 
 
 

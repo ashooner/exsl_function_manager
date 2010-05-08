@@ -24,7 +24,6 @@
 		// Register Stream Wrapper
 		stream_wrapper_register("efm", "XslTemplateLoaderStream");
 		$exsl = $this->getFunctions();
-		fb($exsl, "Stream EXSL");
 		$opts = array(
 		   'efm' => array(
 		       'namespaces' => $exsl['declarations'],
@@ -34,7 +33,6 @@
 		);
 		$streamContext = stream_context_create($opts);
 		libxml_set_streams_context($streamContext);
-		fb("Stream Created.");
 	}
 		
 

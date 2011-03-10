@@ -52,5 +52,5 @@ Simply put, there are probably a lot more ways to abuse this than anything else.
 
 The bottom line is that Symphony provides a pretty good MVC structure, and introducing php functions into the XSL transformation stands a good chance of mucking that up. 
 
-
+test
 

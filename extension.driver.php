@@ -5,7 +5,7 @@
 	Class extension_EXSL_Function_Manager extends Extension{
 		public function about(){
 			return array('name' => 'EXSL Function Manager',
-						 'version' => '0.1',
+						'version' => '0.5',
 						 'release-date' => '',
 						 'author' => array('name' => 'Andrew Shooner',
 										   'website' => 'http://andrewshooner.com',

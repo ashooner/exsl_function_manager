@@ -48,8 +48,5 @@ class EXSLFunction{
 		$this->fn_xslfunction = $strFunction;	
 		return $this->fn_xslfunction;
 	}
-	
-	
+		
 }
-
-

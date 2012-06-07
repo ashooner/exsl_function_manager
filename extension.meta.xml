@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="EXSL_Function_Manager" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+<extension id="exsl_function_manager" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
 	<name>EXSL Function Manager</name>
 	<description>Convert your extension's PHP functions to EXSL.</description>
 	<repo type="github">https://github.com/ashooner/EXSL_Function_Manager</repo>

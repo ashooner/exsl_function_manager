@@ -14,7 +14,7 @@
 	public function createDelegate() {
 		// Create Delegate
 
-		$this->page->ExtensionManager->notifyMembers(
+		Symphony::ExtensionManager()->notifyMembers(
 			'ManageEXSLFunctions', '/frontend/', 	array('manager' => &$this)
 			);
 	}

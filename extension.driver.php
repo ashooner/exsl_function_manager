@@ -16,7 +16,7 @@
 		}
 		
 		public function initFunctionManager($context){
-			$Manager = new FunctionManager(&$context);
+			$Manager = new FunctionManager($context);
 			$Manager->createDelegate();
 			$Manager->createStream();
 		}
